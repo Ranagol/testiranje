@@ -1,17 +1,18 @@
 <?php
 
 class Putnik{
-    protected $ime;
-    protected $prezime;
-    protected $kilazaPutnika;
-    private $noFly;
+    public $ime;
+    public $prezime;
+    public $kilazaPutnika;
+    public $zabranaZaLetenje;
     protected $putnikJeUAvionu = false;
 
 
-    protected function __construct($ime, $prezime, $kilazaPutnika){
-        $this-> $ime = $ime;
-        $this-> $prezime = $prezime;
-        $this-> $kilazaPutnika = $kilazaPutnika;
+    protected function __construct($ime, $prezime, $kilazaPutnika, $zabranaZaLetenje = null){
+        $this-> ime = $ime;
+        $this-> prezime = $prezime;
+        $this-> kilazaPutnika = $kilazaPutnika;
+        $this-> zabranaZaLetenje = $zabranaZaLetenje;
     }
 
     protected function putnikJeUsaoUAvion(){
