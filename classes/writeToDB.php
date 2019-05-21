@@ -1,6 +1,6 @@
 <?php
 
-class WriteToDB{
+class WriteToDB{//SINGLETON
 
     private static $instance = null;
     private $conn;

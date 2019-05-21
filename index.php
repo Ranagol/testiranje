@@ -7,5 +7,7 @@ function __autoload($className){
 
 
 require 'index.view.php';
+require 'zadaci.php';
+
 
 ?>
