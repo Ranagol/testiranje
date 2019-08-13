@@ -1,8 +1,6 @@
 <?php
 
 class Prtljag{
-    protected $imeVlasnika;
-    protected $prezimeVlasnika;
     protected $kilaza;
     protected $prtljagIzgubljen;
     protected $prtljagJeUAvionu = false;
@@ -23,6 +21,10 @@ class Prtljag{
 
     protected function prtljagJeUpakovanUAvion(){
         $this->prtljagJeUAvionu = true;
+    }
+
+    public function zaPrtljaznik() {
+        return $kilaza > 2;//Losi
     }
 }
 

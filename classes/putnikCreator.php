@@ -1,14 +1,13 @@
 <?php 
 
 class PutnikCreator{
-    public $imePutnika;
-    public $prezimePutnika;
-    public $kilazaPutnika;
-    public $zabranaZaLetenje = false;
-    public $prtljagVrsta;
-    public $prtljagTezina;
 
-    function randomImePutnika() {
+    private $ime;
+    private $prezime;
+    public $kilazaPutnika;
+    public $zabranaZaLetenje;
+
+    public function randomImePutnika() {
         $names = array(
             'Zdravko',
             'Bojan',
@@ -19,7 +18,7 @@ class PutnikCreator{
         return $names[rand ( 0 , count($names) -1)];
     }
 
-    function randomPrezimePutnika() {
+    public function randomPrezimePutnika() {
         $names = array(
             'Kovac',
             'Stojanovic',
@@ -31,42 +30,35 @@ class PutnikCreator{
     }
 
     public function namestiKilazuPutnika(){
-        $this->$kilazaPutnika = rand( 20,100);
+        return rand( 20,100);
     }
 
     public function zabranaZaLetenjeSetup(){
         $verovatnoca = rand( 0,100);
         if ($verovatnoca < 30) {
             $this->zabranaZaLetenje = true;
-        }
-    }
-
-    
-
-    public function napraviPutnika(){
-        $putnik = new Putnik($this->randomImePutnika, $this->randomPrezimePutnika, $this->kilazaPutnika, $this->zabranaZaLetenje);
-        return $putnik;
-    }
-
-
-    /*
-    public function namestiPrtljagTezinu(){
-        $this->prtljagTezina =  rand( 1,5);
-    }
-
-    public function namestiPrtljagVrstu(){
-        if ($this->prtljagTezina < 2) {
-            $this-> prtljagVrsta = 'rucniPrtljag';
         } else {
-            $this-> prtljagVrsta = 'prtljagZaPrtljaznik';
+            $this->zabranaZaLetenje = false;
         }
+        return $this->zabranaZaLetenje;
     }
-    */
 
+    public function __toString(){
+        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Kilaza: ' . $this->kilazaPutnika . ' No fly list:' . $this->zabranaZaLetenje;
+    }
 
+    public function __construct(){
+        $this->ime = $this->randomImePutnika();
+        $this->prezime = $this->randomPrezimePutnika();
+        $this->kilazaPutnika = $this->namestiKilazuPutnika();
+        $this->zabranaZaLetenje = $this->zabranaZaLetenjeSetup();
+        $x = new Putnik($this->ime, $this->prezime, $this->kilazaPutnika, $this->zabranaZaLetenje);
+        return $x;
+    }
 
 }
 
-
+$y = new PutnikCreator;
+var_dump($y);
 
 ?>
