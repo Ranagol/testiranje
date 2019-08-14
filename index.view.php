@@ -12,20 +12,28 @@
 <body>
 <h1>Vivify avionski zadatak</h1>
 
-<h2>Spisak putnika iz cekaonice:</h2>
+<h2>Spisak putnika i pilota iz cekaonice:</h2>
 <ol>
     <?php
         foreach ($departureWaitingRoom as $putnik) {
             echo '<li>';
             echo $putnik . '<br>';
             echo '</li>';
-            if ($putnik->zabranaZaLetenje === true) {
-                echo '<br> Ovaj je na nofly listi i ne možemo ga pustiti na avion. <br>';               
-                var_dump($putnik);
+            if ($putnik instanceof Putnik) {
+                if ($putnik->getZabranaZaLetenjeStatus() === true) {
+                    echo '<br> Ovaj je na nofly listi i ne možemo ga pustiti na avion. <br>';               
+                    var_dump($putnik);
+                } else {
+                    $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion 
+                }
             } else {
-                $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion 
-            }
-                                                       
+                if ($putnik->getLicencaZaRadStatus() === false) {
+                    echo '<br> Ovaj pilot nema licencu za rad! Salji u zatvor! <br>';
+                    var_dump($putnik);
+                } else {
+                    $airplane[] = $putnik;//kopiraj pilota iz cekaonice u avion
+                }    
+            }                                              
         }
     ?>
 </ol>

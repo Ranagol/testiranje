@@ -2,7 +2,7 @@
 
 class Putnik extends Person{
 
-    public $zabranaZaLetenje;
+    private $zabranaZaLetenje;
     
     public function __construct(){
         $this->ime = $this->randomIme();
@@ -26,7 +26,7 @@ class Putnik extends Person{
     }
 
     public function getZabranaZaLetenjeStatus(){
-        echo $this->zabranaZaLetenje;
+        return $this->zabranaZaLetenje;
     }
 
     
