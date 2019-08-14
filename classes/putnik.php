@@ -1,30 +1,33 @@
 <?php
 
-class Putnik{
-    private $ime;
-    private $prezime;
-    private $kilazaPutnika;
+class Putnik extends Person{
+
     public $zabranaZaLetenje;
-
-
-
-    public function __construct($ime, $prezime, $kilazaPutnika = null, $zabranaZaLetenje = null){
-        $this-> ime = $ime;
-        $this-> prezime = $prezime;
-        $this-> kilazaPutnika = $kilazaPutnika;
-        $this-> zabranaZaLetenje = $zabranaZaLetenje;
+    
+    public function __construct(){
+        $this->ime = $this->randomIme();
+        $this->prezime = $this->randomPrezime();
+        $this->kilaza = $this->namestiKilazu();
+        $this->zabranaZaLetenje = $this->zabranaZaLetenjeSetup();
     }
 
     public function __toString(){
-        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Kilaza: ' . $this->kilazaPutnika . ' No fly list:' . $this->zabranaZaLetenje;
+        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Kilaza: ' . $this->kilaza . ' No fly list:' . $this->zabranaZaLetenje;
     }
 
+    public function zabranaZaLetenjeSetup(){
+        $verovatnoca = rand( 0,100);
+        if ($verovatnoca < 30) {
+            $this->zabranaZaLetenje = true;
+        } else {
+            $this->zabranaZaLetenje = false;
+        }
+        return $this->zabranaZaLetenje;
+    }
 
-    
-
-    
-
-    
+    public function getZabranaZaLetenjeStatus(){
+        echo $this->zabranaZaLetenje;
+    }
 
     
 

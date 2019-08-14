@@ -19,11 +19,13 @@
             echo '<li>';
             echo $putnik . '<br>';
             echo '</li>';
-            if ($putnik->zabranaZaLetenje = true) {
-                $airplane[] = $putnik;//kopiraj putnika u avion
-            } 
-            
-           
+            if ($putnik->zabranaZaLetenje === true) {
+                echo '<br> Ovaj je na nofly listi i ne možemo ga pustiti na avion. <br>';               
+                var_dump($putnik);
+            } else {
+                $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion 
+            }
+                                                       
         }
     ?>
 </ol>
