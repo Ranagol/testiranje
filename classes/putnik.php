@@ -12,7 +12,7 @@ class Putnik extends Person{
     }
 
     public function __toString(){
-        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Kilaza: ' . $this->kilaza . ' No fly list:' . $this->zabranaZaLetenje;
+        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Kilaza: ' . $this->kilaza .  ' No fly list:' . $this->zabranaZaLetenje;
     }
 
     public function zabranaZaLetenjeSetup(){

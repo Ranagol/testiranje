@@ -1,33 +1,32 @@
 <?php
 
 class AvionskiLet {
-    public $nazivLeta;
+    private $nazivLeta;
     public $spisakPutnika = [];
-    private $maksimalniKapacitet;
-    private $trenutniKapacitet;
+    private $limitBrojOsoba = 12;
+    private $BrojOsobaUAvionu;
+    private $limitTezina = 1100;
+    private $ukupnaTezinaUAvionu;
 
-    public function __construct($nazivLeta, $spisakPutnika, $trenutniKapacitet){
-        $this->nazivLeta = $nazivLeta;
-        $this->spisakPutnika = $spisakPutnika;
-        $this->trenutniKapacitet = $trenutniKapacitet;
+    public function kreirajNazivLeta(){
+        $this->nazivLeta = 'NAZIV LETA: ' . date('h:i:s - d.m.Y');
     }
 
-    protected function namestiMaksimalniKapacitet($maksimalniKapacitet){
-        $this->maksimalniKapacitet = $maksimalniKapacitet;
+    public function pokaziNazivLeta(){
+        return $this->nazivLeta;
     }
 
-    protected function proveriKapacitetAviona(){
-        if ($this->trenutniKapacitet > $this->maksimalniKapacitet) {
-            echo 'Avion preopterecen. Otkazi let ili reorganizuj.';
-        } else {
-            echo 'Kapacitet aviona je OK, u skladu sa propisima. Nastavi sa procesom.';
-        }
+    public function kreirajSpisakPutnika(){///////////////////////////////////////////////////////////////////
+
     }
 
-    
+    public function proveriUkupnuTezinu(){
 
+    }
 
+    public function proveriBrojPutnika(){
 
+    }
 
     
 }

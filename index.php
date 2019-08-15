@@ -18,6 +18,10 @@ for ($i=0; $i < 10; $i++) {
     $departureWaitingRoom[] = new Putnik;//kreiramo automatski putnike da budu u cekaonici
 }
 
+//TESTIRANJE AVIONSKOG LETA
+$avionskiLet = new AvionskiLet;
+$avionskiLet->kreirajNazivLeta();
+echo $avionskiLet->pokaziNazivLeta();
 
 
 

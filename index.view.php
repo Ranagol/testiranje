@@ -24,7 +24,8 @@
                     echo '<br> Ovaj je na nofly listi i ne možemo ga pustiti na avion. <br>';               
                     var_dump($putnik);
                 } else {
-                    $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion 
+                    $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion
+                    $avionskiLet->spisakPutnika[] = $putnik->pokaziIme(); 
                 }
             } else {
                 if ($putnik->getLicencaZaRadStatus() === false) {
@@ -35,6 +36,7 @@
                 }    
             }                                              
         }
+        //var_dump($avionskiLet->spisakPutnika);//ovo je samo nacin da se proveri da li AvionskiLet ima u sebi spisak putnika
     ?>
 </ol>
 

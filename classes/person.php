@@ -1,9 +1,9 @@
 <?php
 
 abstract class Person{
-    private $ime;
-    private $prezime;
-    private $kilaza;
+    public $ime;
+    public $prezime;
+    public $kilaza;
     
 
     public function __construct(){
@@ -37,6 +37,10 @@ abstract class Person{
 
     public function namestiKilazu(){
         return rand( 20,100);
+    }
+
+    public function pokaziIme(){
+        return $this->ime . ' ' . $this->prezime;
     }
 
 }
