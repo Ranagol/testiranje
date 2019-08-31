@@ -12,6 +12,10 @@ $noFlyList = [];
 $airplane = [];
 $arrival = [];
 
+//TESTIRANJE AVIONSKOG LETA
+$avionskiLet = new AvionskiLet;
+$avionskiLet->kreirajNazivLeta();
+
 //PILOTI SU STVORENI U CEKAONI
 for ($i=0; $i < 2; $i++) { 
     $departureWaitingRoom[] = new Pilot;//kreiramo automatski pilote da budu u cekaonici
@@ -24,14 +28,14 @@ for ($i=0; $i < 10; $i++) {
 
 //PUTNICI I PILOTI SE PROVERAVAJU U CEKAONI, I AKO JE SVE OK, ONDA SE PREBACUJU U AVION
 foreach ($departureWaitingRoom as $putnik) {
-    //$avionskiLet->ukupnaTezinaRacunaj($putnik);
+    $avionskiLet->ukupnaTezinaRacunaj($putnik);
     if ($putnik instanceof Putnik) {//ako se radi o putniku...
         if ($putnik->getZabranaZaLetenjeStatus() === true) {
-                          
             $noFlyList[] = $putnik; 
         } else {
             $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion
             $avionskiLet->spisakPutnika[] = $putnik->pokaziIme();//napravi jos jedan spisak putnika za AvionskiLet
+            $avionskiLet->ukupnaTezinaRacunaj($putnik);
         }
     } else {//ako nije putnik, nego se radi o pilotu
         if ($putnik->getLicencaZaRadStatus() === false) {
@@ -39,6 +43,7 @@ foreach ($departureWaitingRoom as $putnik) {
             var_dump($putnik);
         } else {
             $airplane[] = $putnik;//kopiraj pilota iz cekaonice u avion
+            $avionskiLet->ukupnaTezinaRacunaj($putnik);
         }    
     }                                              
 }
@@ -46,9 +51,7 @@ foreach ($departureWaitingRoom as $putnik) {
 
 
 
-//TESTIRANJE AVIONSKOG LETA
-$avionskiLet = new AvionskiLet;
-$avionskiLet->kreirajNazivLeta();
+
 
 
 //AVION STIGAO NA ODREDISTE. PUTNICI SE PREBACUJU NA ODREDISTE

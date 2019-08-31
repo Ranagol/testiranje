@@ -7,7 +7,7 @@ class AvionskiLet {
     private $BrojOsobaUAvionu;
     private $limitTezina = 1100;
     private $tezinaArray = [];
-    public $ukupnaTezina;
+    private $ukupnaTezina;
 
     public function kreirajNazivLeta(){
         $this->nazivLeta = 'NAZIV LETA: ' . date('h:i:s - d.m.Y');
@@ -24,6 +24,10 @@ class AvionskiLet {
 
     public function pokaziUkupnuTezinuLeta(){
         return $this->ukupnaTezina;
+    }
+
+    public function pokaziLimitTezinu(){
+        return $this->limitTezina;
     }
     
 

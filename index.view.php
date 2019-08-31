@@ -14,9 +14,15 @@
 
 <h2>Podaci avionskog leta</h2>
 <?php
-echo $avionskiLet->pokaziNazivLeta();
-echo $avionskiLet->pokaziUkupnuTezinuLeta();
-
+    echo $avionskiLet->pokaziNazivLeta() . '<br>';
+    echo 'Dozvoljenja maksimalna težina putnika i pilota je ' . $avionskiLet->pokaziLimitTezinu() . ' kg.' . '<br>';
+    //ukupno izmereno opterecenje aviona je X, i zato ovaj avion sme da poleti---ne sme da poleti, obavezno smanji tezinu
+    echo 'Ukupno izmereno opterećenje aviona je ' . $avionskiLet->pokaziUkupnuTezinuLeta() .' kg.' . '<br>';
+    if ($avionskiLet->pokaziLimitTezinu() < $avionskiLet->pokaziUkupnuTezinuLeta()) {
+        echo 'Opterecenje aviona je preveliko. Posalji putnike na dijetu. Avion ne sme da poleti.'. '<br>';
+    } else {
+        echo 'Opterecenje aviona je u skladu sa pravilima. Avion sme da poleti.'. '<br>';
+    }
 ?>
 
 
@@ -44,14 +50,7 @@ echo $avionskiLet->pokaziUkupnuTezinuLeta();
     ?>
 </ol>
 
-<?php
-/*
-    //provera ukupne tezine
-    var_dump($avionskiLet->ukupnaTezina);
-    echo $avionskiLet->ukupnaTezina;
-    echo $avionskiLet->pokaziUkupnuTezinuLeta();
-*/
-?>
+
 
 <h2>Spisak pilota i putnika ukrcanih u avion:</h2>
 <ol>
