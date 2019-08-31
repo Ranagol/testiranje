@@ -6,7 +6,8 @@ class AvionskiLet {
     private $limitBrojOsoba = 12;
     private $BrojOsobaUAvionu;
     private $limitTezina = 1100;
-    private $ukupnaTezinaUAvionu;
+    private $tezinaArray = [];
+    public $ukupnaTezina;
 
     public function kreirajNazivLeta(){
         $this->nazivLeta = 'NAZIV LETA: ' . date('h:i:s - d.m.Y');
@@ -16,13 +17,16 @@ class AvionskiLet {
         return $this->nazivLeta;
     }
 
-    public function kreirajSpisakPutnika(){///////////////////////////////////////////////////////////////////
-
+    public function ukupnaTezinaRacunaj($putnik){
+        $this->tezinaArray[] = $putnik->pokaziKilazu();
+        $this->ukupnaTezina = array_sum($this->tezinaArray);
     }
 
-    public function proveriUkupnuTezinu(){
-
+    public function pokaziUkupnuTezinuLeta(){
+        return $this->ukupnaTezina;
     }
+    
+
 
     public function proveriBrojPutnika(){
 

@@ -43,6 +43,10 @@ abstract class Person{
         return $this->ime . ' ' . $this->prezime;
     }
 
+    public function pokaziKilazu(){
+        return $this->kilaza;
+    }
+
 }
 
 

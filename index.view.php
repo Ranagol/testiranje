@@ -12,50 +12,60 @@
 <body>
 <h1>Vivify avionski zadatak</h1>
 
-<h2>Spisak putnika i pilota iz cekaonice:</h2>
+<h2>Podaci avionskog leta</h2>
+<?php
+echo $avionskiLet->pokaziNazivLeta();
+echo $avionskiLet->pokaziUkupnuTezinuLeta();
+
+?>
+
+
+
+<h2>Spisak svih putnika i pilota iz cekaonice:</h2>
 <ol>
     <?php
         foreach ($departureWaitingRoom as $putnik) {
             echo '<li>';
             echo $putnik . '<br>';
             echo '</li>';
-            if ($putnik instanceof Putnik) {
-                if ($putnik->getZabranaZaLetenjeStatus() === true) {
-                    echo '<br> Ovaj je na nofly listi i ne možemo ga pustiti na avion. <br>';               
-                    var_dump($putnik);
-                } else {
-                    $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion
-                    $avionskiLet->spisakPutnika[] = $putnik->pokaziIme(); 
-                }
-            } else {
-                if ($putnik->getLicencaZaRadStatus() === false) {
-                    echo '<br> Ovaj pilot nema licencu za rad! Salji u zatvor! <br>';
-                    var_dump($putnik);
-                } else {
-                    $airplane[] = $putnik;//kopiraj pilota iz cekaonice u avion
-                }    
-            }                                              
         }
-        //var_dump($avionskiLet->spisakPutnika);//ovo je samo nacin da se proveri da li AvionskiLet ima u sebi spisak putnika
     ?>
 </ol>
 
+<h2>Putnici sa No-fly liste koji će imati dugačak informativni razgovor sa security i neće leteti :) </h2>
+<ol>
+    <?php
+        foreach ($noFlyList as $putnik) {
+            echo '<li>';
+            echo $putnik . '<br>';
+            echo 'Ovaj je na nofly listi i ne možemo ga pustiti na avion. <br>'; 
+            echo '</li>';
+        }
+    ?>
+</ol>
 
+<?php
+/*
+    //provera ukupne tezine
+    var_dump($avionskiLet->ukupnaTezina);
+    echo $avionskiLet->ukupnaTezina;
+    echo $avionskiLet->pokaziUkupnuTezinuLeta();
+*/
+?>
 
-<h2>Spisak putnika iz aviona:</h2>
+<h2>Spisak pilota i putnika ukrcanih u avion:</h2>
 <ol>
     <?php
         foreach ($airplane as $putnik) {
             echo '<li>';
             echo $putnik . '<br>';
             echo '</li>';
-            $arrival[] = $putnik;//kopiraj putnika na odrediste
         }
     ?>
 </ol>
 
 
-<h2>Spisak putnika koji su stigli na odrediste:</h2>
+<h2>Spisak pilota i putnika koji su stigli na odrediste:</h2>
 <ol>
     <?php
         foreach ($arrival as $putnik) {
