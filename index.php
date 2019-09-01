@@ -12,7 +12,10 @@ $noFlyList = [];
 $airplane = [];
 $arrival = [];
 
-//TESTIRANJE AVIONSKOG LETA
+$kofer = new Kofer;
+var_dump($kofer);
+
+//KREIRANJE AVIONSKOG LETA
 $avionskiLet = new AvionskiLet;
 $avionskiLet->kreirajNazivLeta();
 
