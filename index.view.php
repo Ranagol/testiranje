@@ -23,6 +23,7 @@
     } else {
         echo 'Opterecenje aviona je u skladu sa pravilima. Avion sme da poleti.'. '<br>';
     }
+    echo 'Broj putnika je (zajedno sa pilotima): ' . $avionskiLet->brojPutnikaUAvionu . ' osoba.';
 ?>
 
 

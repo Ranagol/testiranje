@@ -4,7 +4,7 @@ class AvionskiLet {
     private $nazivLeta;
     public $spisakPutnika = [];
     private $limitBrojOsoba = 12;
-    private $BrojOsobaUAvionu;
+    public $brojPutnikaUAvionu;
     private $limitTezina = 1100;
     private $tezinaArray = [];
     private $ukupnaTezina;
@@ -31,9 +31,12 @@ class AvionskiLet {
     }
     
 
+    public function povecajBrojPutnikaSaJedan(){
+        $this->brojPutnikaUAvionu++;
+    }
 
-    public function proveriBrojPutnika(){
-
+    public function pokaziBrojPutnika(){
+        return $this->brojPutnikaUAvionu;
     }
 
     

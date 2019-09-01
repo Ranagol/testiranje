@@ -35,7 +35,8 @@ foreach ($departureWaitingRoom as $putnik) {
         } else {
             $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion
             $avionskiLet->spisakPutnika[] = $putnik->pokaziIme();//napravi jos jedan spisak putnika za AvionskiLet
-            $avionskiLet->ukupnaTezinaRacunaj($putnik);
+            $avionskiLet->ukupnaTezinaRacunaj($putnik);//racunanje ukupnog opterecenja aviona
+            $avionskiLet->povecajBrojPutnikaSaJedan();
         }
     } else {//ako nije putnik, nego se radi o pilotu
         if ($putnik->getLicencaZaRadStatus() === false) {
@@ -44,6 +45,7 @@ foreach ($departureWaitingRoom as $putnik) {
         } else {
             $airplane[] = $putnik;//kopiraj pilota iz cekaonice u avion
             $avionskiLet->ukupnaTezinaRacunaj($putnik);
+            $avionskiLet->povecajBrojPutnikaSaJedan();
         }    
     }                                              
 }
