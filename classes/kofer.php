@@ -44,6 +44,10 @@ class Kofer{//napomena: koferi ce se stvarati automatski istovremeno sa putnicim
         echo 'KOFER. Tezina kofera: ' . $this->tezinaKofera . ' kg. Vrsta kofera: ' . $this->vrstaKofera . '. Mesto skladistenja kofera: ' . $this->gdeSeSkladisti . '.';
     }
 
+    public function pokaziTezinuKofera(){
+        return $this->tezinaKofera;
+    }
+
 
     public function daLiSeKoferIzgubio(){//ovo ce se simulirati na kraju puta
         $verovatnoca = rand(1,100);

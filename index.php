@@ -30,12 +30,14 @@ for ($i=0; $i < 10; $i++) {
 
 //PUTNICI I PILOTI SE PROVERAVAJU U CEKAONI, I AKO JE SVE OK, ONDA SE PREBACUJU U AVION
 foreach ($departureWaitingRoom as $putnik) {
-    $avionskiLet->ukupnaTezinaRacunaj($putnik);
+    
     if ($putnik instanceof Putnik) {//ako se radi o putniku...
         if ($putnik->getZabranaZaLetenjeStatus()) {
             $noFlyList[] = $putnik; 
         } else {
             $airplane['putnickiDeo'][] = $putnik;//kopiraj putnika iz cekaonice u avion
+            $avionskiLet->ukupnaTezinaRacunaj($putnik);//racunaj tezine putnika
+            $avionskiLet->ukupnaTezinaKofera($putnik->mojKoferJeTu);//racunaj tezine kofera
             $avionskiLet->spisakPutnika[] = $putnik->pokaziIme();//napravi jos jedan spisak putnika za AvionskiLet
             $avionskiLet->ukupnaTezinaRacunaj($putnik);//racunanje ukupnog opterecenja aviona
             $avionskiLet->povecajBrojPutnikaSaJedan();
@@ -54,16 +56,16 @@ foreach ($departureWaitingRoom as $putnik) {
 }
 //var_dump($avionskiLet->spisakPutnika);//ovo je samo nacin da se proveri da li AvionskiLet ima u sebi spisak putnika. Nema neku bitnu funkciju, ali je trazeno u zadatku.
 
-//var_dump($airplane);
 
-//**************************************
+
+
 //OVDE SE GUBE NEKI KOFERI
 foreach ($airplane['putnickiDeo'] as $putnik) {
     //OBJECTBEN LEVO AKARMIT-OBJECTET IGY KELL MANIPULALNI, DE MUSZAJ HOGY PUBLIC LEGYEN
     $putnik->mojKoferJeTu->daLiSeKoferIzgubio();
     $putnik->mojKoferJeTu->daLiPlatitiNadoknaduZaIzgubljenKofer();
 }
-//******************************************* 
+
 
 //AVION STIGAO NA ODREDISTE. PUTNICI SE PREBACUJU NA ODREDISTE
 

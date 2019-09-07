@@ -16,14 +16,20 @@
 <?php
     echo $avionskiLet->pokaziNazivLeta() . '<br>';
     echo 'Dozvoljenja maksimalna težina putnika i pilota je ' . $avionskiLet->pokaziLimitTezinu() . ' kg.' . '<br>';
-    //ukupno izmereno opterecenje aviona je X, i zato ovaj avion sme da poleti---ne sme da poleti, obavezno smanji tezinu
-    echo 'Ukupno izmereno opterećenje aviona je ' . $avionskiLet->pokaziUkupnuTezinuLeta() .' kg.' . '<br>';
-    if ($avionskiLet->pokaziLimitTezinu() < $avionskiLet->pokaziUkupnuTezinuLeta()) {
+    echo 'Ukupna tezina svih kofera je ' . $avionskiLet->pokaziUkupnuTezinuKofera(). ' kg.' . '<br>';
+    echo 'Ukupna tezina svih putnika i pilota je ' . $avionskiLet->pokaziUkupnuTezinuPutnika() .' kg.' . '<br>';
+    
+    
+    $ukupnaTezina = $avionskiLet->pokaziUkupnuTezinuPutnika()+$avionskiLet->pokaziUkupnuTezinuKofera();
+    echo 'Ukupno izmereno opterećenje (putnici+piloti+koferi) aviona je ' . $ukupnaTezina  .' kg.' . '<br>';
+    
+    if ($avionskiLet->pokaziLimitTezinu() < $ukupnaTezina) {
         echo 'Opterecenje aviona je preveliko. Posalji putnike na dijetu. Avion ne sme da poleti.'. '<br>';
     } else {
         echo 'Opterecenje aviona je u skladu sa pravilima. Avion sme da poleti.'. '<br>';
     }
     echo 'Broj putnika je (zajedno sa pilotima): ' . $avionskiLet->brojPutnikaUAvionu . ' osoba.';
+    
 ?>
 
 

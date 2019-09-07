@@ -8,6 +8,8 @@ class AvionskiLet {
     private $limitTezina = 1200;
     private $tezinaArray = [];
     private $ukupnaTezina;
+    private $tezinaArrayKofer = [];
+    private $ukupnaTezinaKofera;
 
     public function kreirajNazivLeta(){
         $this->nazivLeta = 'NAZIV LETA: ' . date('h:i:s - d.m.Y');
@@ -22,7 +24,17 @@ class AvionskiLet {
         $this->ukupnaTezina = array_sum($this->tezinaArray);
     }
 
-    public function pokaziUkupnuTezinuLeta(){
+    public function ukupnaTezinaKofera($koferObject){
+        $this->tezinaArrayKofer[] = $koferObject->pokaziTezinuKofera();
+        $this->ukupnaTezinaKofera = array_sum($this->tezinaArrayKofer);
+    }
+
+    public function pokaziUkupnuTezinuKofera(){
+        return $this->ukupnaTezinaKofera;
+    }
+
+
+    public function pokaziUkupnuTezinuPutnika(){
         return $this->ukupnaTezina;
     }
 
