@@ -1,19 +1,19 @@
 <?php
 
-class Kofer{
+class Kofer{//napomena: koferi ce se stvarati automatski istovremeno sa putnicima, u putnik __construct.
 
     private $tezinaKofera;
     private $vrstaKofera;
-    private $sansaDaSeIzgubi;
+    public $sansaDaSeIzgubi;
     private $imeVlasnika;
-    private $koferIzgubljen = false;
-    private $platitiNadoknadaZaIzgubljenKofer = false;
+    private $gdeSeSkladisti;
+    public $koferIzgubljen = false;
+    public $platitiNadoknaduZaIzgubljenKofer = false;
 
     public function __construct(){
         $this->namestiTezinuKofera();
         $this->namestiVrstuKofera();
-        $this->namestiSansuDaSeIzgubi();
-        $this->namestiImeVlasnika();
+        $this->namestiImeVlasnika();//ovo jos ne radi!
     }
 
     public function namestiTezinuKofera(){
@@ -23,23 +23,25 @@ class Kofer{
     public function namestiVrstuKofera(){
         if ($this->tezinaKofera < 2) {
             $this->vrstaKofera = 'mali kofer';
-        } else {
-            $this->vrstaKofera = 'veliki kofer';
-        }
-    }
-
-
-    public function namestiSansuDaSeIzgubi(){
-        if ($this->vrstaKofera == 'mali kofer') {
+            $this->gdeSeSkladisti = 'rucni prtljag';
             $this->sansaDaSeIzgubi = 10;
         } else {
+            $this->vrstaKofera = 'veliki kofer';
+            $this->gdeSeSkladisti = 'teretni deo aviona';
             $this->sansaDaSeIzgubi = 30;
         }
     }
 
-
     public function namestiImeVlasnika(){
-        $this->imeVlasnika = 'Ime vlasnika fukcija jos nije izradjen.';
+        $this->imeVlasnika = 'Ime vlasnika fukcija jos nije izradjena.';
+    }
+
+    public function __toString(){
+        return 'Tezina kofera: ' . $this->tezinaKofera . ' kg. Vrsta kofera: ' . $this->vrstaKofera . '. Mesto skladistenja kofera: ' . $this->gdeSeSkladisti . '.';
+    }
+
+    public function pokaziKofer(){
+        echo 'KOFER. Tezina kofera: ' . $this->tezinaKofera . ' kg. Vrsta kofera: ' . $this->vrstaKofera . '. Mesto skladistenja kofera: ' . $this->gdeSeSkladisti . '.';
     }
 
 
@@ -52,7 +54,18 @@ class Kofer{
 
     public function daLiPlatitiNadoknaduZaIzgubljenKofer(){//ovo ce se simulirati na kraju puta
         if ($this->vrstaKofera == 'veliki kofer' && $this->koferIzgubljen == true) {
-            $this->platitiNadoknadaZaIzgubljenKofer = true;
+            $this->platitiNadoknaduZaIzgubljenKofer = true;
+        }
+    }
+
+    public function nadoknada(){
+        if ($this->koferIzgubljen == true) {
+            echo 'Kofer NIJE izgubljen. Ne placa se nadoknada, hurray!';
+        } else {
+            echo 'Kofer je IZGUBLJEN. ';
+            if ($platitiNadoknaduZaIzgubljenKofer = true) {
+                echo 'Za ovaj kofer se mora platiti nadoknada!';
+            }
         }
     }
 

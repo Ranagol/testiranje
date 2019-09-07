@@ -3,16 +3,18 @@
 class Putnik extends Person{
 
     private $zabranaZaLetenje;
+    public $mojKoferJeTu;
     
     public function __construct(){
         $this->ime = $this->randomIme();
         $this->prezime = $this->randomPrezime();
         $this->kilaza = $this->namestiKilazu();
         $this->zabranaZaLetenje = $this->zabranaZaLetenjeSetup();
+        $this->mojKoferJeTu = new Kofer;
     }
 
     public function __toString(){
-        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Kilaza: ' . $this->kilaza .  ' No fly list:' . $this->zabranaZaLetenje;
+        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Tezina putnika: ' . $this->kilaza . ' kg.' . ' No fly list:' . $this->zabranaZaLetenje;
     }
 
     public function zabranaZaLetenjeSetup(){

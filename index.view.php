@@ -34,6 +34,7 @@
         foreach ($departureWaitingRoom as $putnik) {
             echo '<li>';
             echo $putnik . '<br>';
+            $putnik->mojKoferJeTu->pokaziKofer();
             echo '</li>';
         }
     ?>
@@ -53,12 +54,13 @@
 
 
 
-<h2>Spisak pilota i putnika ukrcanih u avion:</h2>
+<h2>Spisak pilota i putnika (zajedno sa koferima) ukrcanih u avion:</h2>
 <ol>
     <?php
-        foreach ($airplane as $putnik) {
+        foreach ($airplane['putnickiDeo'] as $putnik) {
             echo '<li>';
             echo $putnik . '<br>';
+            $putnik->mojKoferJeTu->pokaziKofer();
             echo '</li>';
         }
     ?>
@@ -68,14 +70,23 @@
 <h2>Spisak pilota i putnika koji su stigli na odrediste:</h2>
 <ol>
     <?php
-        foreach ($arrival as $putnik) {
+        foreach ($arrival as $person) {
             echo '<li>';
-            echo $putnik . '<br>';
+            echo $person . '<br>';
+            $person->mojKoferJeTu->pokaziKofer();
+            echo $person->mojKoferJeTu->nadoknada();   
             echo '</li>';
         }
+
+        
     ?>
 </ol>
 
+<h2>Odsek za izgubljene prtljage</h2>
+<p>
+Ukupna tezina izgubljenih prtljaga:
+<br>
+Imena putnika čiji predati veliki kofer je izgubljen (kompanija ne odgovara za ručni prtljag):
 
 
     

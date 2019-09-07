@@ -18,6 +18,9 @@ abstract class Person{
             'Zdravko',
             'Bojan',
             'Dragan',
+            'Marko',
+            'Vuk',
+            'Marjan',
             //itd...
     
         );
@@ -29,6 +32,10 @@ abstract class Person{
             'Kovac',
             'Stojanovic',
             'Babic',
+            'Horvat',
+            'Barna',
+            'Losonc',
+            'Daraz',
             //itd...
     
         );

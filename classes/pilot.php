@@ -4,16 +4,18 @@ class Pilot extends Person {
 
     private $zanimanje = 'PILOT';
     private $imaLicencuZaRad;
+    public $mojKoferJeTu;
     
     public function __construct(){
         $this->ime = $this->randomIme();
         $this->prezime = $this->randomPrezime();
         $this->kilaza = $this->namestiKilazu();
         $this->imaLicencuZaRad = $this->licencaZaRadSetup();
+        $this->mojKoferJeTu = new Kofer;
     }
 
     public function __toString(){
-        return $this->zanimanje . '. Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Kilaza: ' . $this->kilaza . ' Licenca za rad:' . $this->imaLicencuZaRad;
+        return $this->zanimanje . '. Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Kilaza: ' . $this->kilaza . ' kg.' . ' Licenca za rad:' . $this->imaLicencuZaRad;
     }
 
     public function licencaZaRadSetup(){

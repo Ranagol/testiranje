@@ -12,8 +12,7 @@ $noFlyList = [];
 $airplane = [];
 $arrival = [];
 
-$kofer = new Kofer;
-var_dump($kofer);
+
 
 //KREIRANJE AVIONSKOG LETA
 $avionskiLet = new AvionskiLet;
@@ -33,36 +32,45 @@ for ($i=0; $i < 10; $i++) {
 foreach ($departureWaitingRoom as $putnik) {
     $avionskiLet->ukupnaTezinaRacunaj($putnik);
     if ($putnik instanceof Putnik) {//ako se radi o putniku...
-        if ($putnik->getZabranaZaLetenjeStatus() === true) {
+        if ($putnik->getZabranaZaLetenjeStatus()) {
             $noFlyList[] = $putnik; 
         } else {
-            $airplane[] = $putnik;//kopiraj putnika iz cekaonice u avion
+            $airplane['putnickiDeo'][] = $putnik;//kopiraj putnika iz cekaonice u avion
             $avionskiLet->spisakPutnika[] = $putnik->pokaziIme();//napravi jos jedan spisak putnika za AvionskiLet
             $avionskiLet->ukupnaTezinaRacunaj($putnik);//racunanje ukupnog opterecenja aviona
             $avionskiLet->povecajBrojPutnikaSaJedan();
         }
     } else {//ako nije putnik, nego se radi o pilotu
-        if ($putnik->getLicencaZaRadStatus() === false) {
+        if (!$putnik->getLicencaZaRadStatus()) {
             echo '<br> Ovaj pilot nema licencu za rad! Salji u zatvor! <br>';
-            var_dump($putnik);
+            // var_dump($putnik);
         } else {
-            $airplane[] = $putnik;//kopiraj pilota iz cekaonice u avion
+            $airplane['kokpit'][] = $putnik;//kopiraj pilota iz cekaonice u avion
             $avionskiLet->ukupnaTezinaRacunaj($putnik);
             $avionskiLet->povecajBrojPutnikaSaJedan();
+            // var_dump($putnik);
         }    
     }                                              
 }
 //var_dump($avionskiLet->spisakPutnika);//ovo je samo nacin da se proveri da li AvionskiLet ima u sebi spisak putnika. Nema neku bitnu funkciju, ali je trazeno u zadatku.
 
+//var_dump($airplane);
 
-
-
-
+//**************************************
+//OVDE SE GUBE NEKI KOFERI
+foreach ($airplane['putnickiDeo'] as $putnik) {
+    //OBJECTBEN LEVO AKARMIT-OBJECTET IGY KELL MANIPULALNI, DE MUSZAJ HOGY PUBLIC LEGYEN
+    $putnik->mojKoferJeTu->daLiSeKoferIzgubio();
+    $putnik->mojKoferJeTu->daLiPlatitiNadoknaduZaIzgubljenKofer();
+}
+//******************************************* 
 
 //AVION STIGAO NA ODREDISTE. PUTNICI SE PREBACUJU NA ODREDISTE
 
-foreach ($airplane as $putnik) {
-    $arrival[] = $putnik;//kopiraj putnika (i pilota) na odrediste
+foreach ($airplane as $section) {
+    foreach ($section as $person) {
+        $arrival[] = $person;//kopiraj putnika (i pilota) na odrediste
+    }
 }
 
 
