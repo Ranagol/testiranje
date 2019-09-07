@@ -2,7 +2,7 @@
 
 class Putnik extends Person{
 
-    private $zabranaZaLetenje;
+    public $zabranaZaLetenje;
     public $mojKoferJeTu;
     
     public function __construct(){
@@ -14,7 +14,8 @@ class Putnik extends Person{
     }
 
     public function __toString(){
-        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Tezina putnika: ' . $this->kilaza . ' kg.' . ' No fly list:' . $this->zabranaZaLetenje;
+        return 'Ime: ' . $this->ime . ' Prezime: ' . $this->prezime . ' Tezina putnika: ' . $this->kilaza . ' kg.';
+        //' No fly list:' . $this->zabranaZaLetenje;
     }
 
     public function zabranaZaLetenjeSetup(){
