@@ -3,7 +3,7 @@
 class Kofer{//napomena: koferi ce se stvarati automatski istovremeno sa putnicima, u putnik __construct.
 
     private $tezinaKofera;
-    private $vrstaKofera;
+    public $vrstaKofera;
     public $sansaDaSeIzgubi;
     private $imeVlasnika;
     private $gdeSeSkladisti;
@@ -22,11 +22,11 @@ class Kofer{//napomena: koferi ce se stvarati automatski istovremeno sa putnicim
 
     public function namestiVrstuKofera(){
         if ($this->tezinaKofera < 2) {
-            $this->vrstaKofera = 'mali kofer';
-            $this->gdeSeSkladisti = 'rucni prtljag';
+            $this->vrstaKofera = 'MALI kofer';
+            $this->gdeSeSkladisti = 'rucni prtljaznik';
             $this->sansaDaSeIzgubi = 10;
         } else {
-            $this->vrstaKofera = 'veliki kofer';
+            $this->vrstaKofera = 'VELIKI kofer';
             $this->gdeSeSkladisti = 'teretni deo aviona';
             $this->sansaDaSeIzgubi = 30;
         }
@@ -57,13 +57,13 @@ class Kofer{//napomena: koferi ce se stvarati automatski istovremeno sa putnicim
     }
 
     public function daLiPlatitiNadoknaduZaIzgubljenKofer(){//ovo ce se simulirati na kraju puta
-        if ($this->vrstaKofera == 'veliki kofer' && $this->koferIzgubljen == true) {
+        if ($this->vrstaKofera == 'VELIKI kofer' && $this->koferIzgubljen == true) {
             $this->platitiNadoknaduZaIzgubljenKofer = true;
         }
     }
 
     public function nadoknada(){
-        if ($this->koferIzgubljen == true) {
+        if ($this->koferIzgubljen == false) {
             echo 'Kofer NIJE izgubljen. Ne placa se nadoknada, hurray!';
         } else {
             echo 'Kofer je IZGUBLJEN. ';
@@ -71,6 +71,10 @@ class Kofer{//napomena: koferi ce se stvarati automatski istovremeno sa putnicim
                 echo 'Za ovaj kofer se mora platiti nadoknada!';
             }
         }
+    }
+
+    public function pokaziNadoknade(){
+        return $this->platitiNadoknaduZaIzgubljenKofer;
     }
 
 

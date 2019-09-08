@@ -5,7 +5,7 @@ class AvionskiLet {
     public $spisakPutnika = [];
     private $limitBrojOsoba = 12;
     public $brojPutnikaUAvionu;
-    private $limitTezina = 1200;
+    private $limitTezina = 1000;
     private $tezinaArray = [];
     private $ukupnaTezina;
     private $tezinaArrayKofer = [];

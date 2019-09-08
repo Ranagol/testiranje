@@ -59,18 +59,13 @@ foreach ($departureWaitingRoom as $putnik) {
 
 
 
-//OVDE SE GUBE NEKI KOFERI
-foreach ($airplane['putnickiDeo'] as $putnik) {
-    //OBJECTBEN LEVO AKARMIT-OBJECTET IGY KELL MANIPULALNI, DE MUSZAJ HOGY PUBLIC LEGYEN
-    $putnik->mojKoferJeTu->daLiSeKoferIzgubio();
-    $putnik->mojKoferJeTu->daLiPlatitiNadoknaduZaIzgubljenKofer();
-}
 
+//AVION STIGAO NA ODREDISTE. PUTNICI SE PREBACUJU NA ODREDISTE + SIMULIRAMO GUBLJENJE KOFERA
 
-//AVION STIGAO NA ODREDISTE. PUTNICI SE PREBACUJU NA ODREDISTE
-
-foreach ($airplane as $section) {
-    foreach ($section as $person) {
+foreach ($airplane as $section) {//jer $airplane ima dve sekcije: 1.) cockpit 2.) putnickiDeo i sada proveravamo obe sekcije
+    foreach ($section as $person) {//... i ovde, u datoj sekciji trazimo pilote ili putnike, pa smo zatok koristili $person
+        $person->mojKoferJeTu->daLiSeKoferIzgubio();//OVDE SE GUBE NEKI KOFERI
+        $person->mojKoferJeTu->daLiPlatitiNadoknaduZaIzgubljenKofer();
         $arrival[] = $person;//kopiraj putnika (i pilota) na odrediste
     }
 }
