@@ -11,6 +11,7 @@ $departureWaitingRoom = [];
 $noFlyList = [];
 $airplane = [];
 $arrival = [];
+$zatvor = [];
 
 
 
@@ -40,12 +41,13 @@ foreach ($departureWaitingRoom as $putnik) {
             $avionskiLet->ukupnaTezinaKofera($putnik->mojKoferJeTu);//racunaj tezine kofera
             $avionskiLet->spisakPutnika[] = $putnik->pokaziIme();//napravi jos jedan spisak putnika za AvionskiLet
             $avionskiLet->ukupnaTezinaRacunaj($putnik);//racunanje ukupnog opterecenja aviona
-            $avionskiLet->povecajBrojPutnikaSaJedan();
+            $avionskiLet->povecajBrojPutnikaSaJedan();//za racunanje maksimalno dozvoljenog broja putnika
         }
     } else {//ako nije putnik, nego se radi o pilotu
         if (!$putnik->getLicencaZaRadStatus()) {
             echo '<br> Ovaj pilot nema licencu za rad! Salji u zatvor! <br>';
-            // var_dump($putnik);
+            //var_dump($putnik);//samo za kontrolu       
+
         } else {
             $airplane['kokpit'][] = $putnik;//kopiraj pilota iz cekaonice u avion
             $avionskiLet->ukupnaTezinaRacunaj($putnik);
@@ -55,6 +57,22 @@ foreach ($departureWaitingRoom as $putnik) {
     }                                              
 }
 //var_dump($avionskiLet->spisakPutnika);//ovo je samo nacin da se proveri da li AvionskiLet ima u sebi spisak putnika. Nema neku bitnu funkciju, ali je trazeno u zadatku.
+
+
+//PILOT RAD ZA LICENCU EXCEPTION
+try {
+    foreach ($departureWaitingRoom as $putnik) {
+        if ($putnik instanceof Pilot && $putnik->getLicencaZaRadStatus()== false){
+            throw new nemaLicencuException;
+        }
+    }          
+}//zasto salje samo jednog pilota u zatvor, kada bi trebalo da salje sve pilote? Jer exception zaustavlja sam sebe??
+
+catch(nemaLicencuException $e){
+    echo $e->errorMessage();
+    $zatvor[] = $putnik;
+}
+
 
 
 

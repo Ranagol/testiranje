@@ -30,7 +30,16 @@
     } else {
         echo 'Opterecenje aviona je u skladu sa pravilima. Avion sme da poleti.'. '<br>';
     }
-    echo 'Broj putnika je (zajedno sa pilotima): ' . $avionskiLet->brojPutnikaUAvionu . ' osoba.';
+    echo 'Broj putnika je (zajedno sa pilotima): ' . $avionskiLet->brojPutnikaUAvionu . ' osoba. <br>';
+
+    //pilot u zatvoru opcija
+    if (!empty($zatvor)) {
+        echo 'Blic novine: SKANDALOZNO! Pilot nije imao licencu za rad! <br>';
+        echo 'Telegraf novine: SKANDALOZNO! Pilot nije imao licencu za rad! Ovo je zavera protiv Srbije! <br>';
+        foreach ($zatvor as $zatvorenik){
+            echo 'Tanjug: Ovaj pilot nije imao licencu za rad, i zato je kloniran na brzinu i njegov klon je poslat u zatvor: ' . $zatvorenik;
+        }
+    }
     
 ?>
 </p>
@@ -109,17 +118,17 @@
 
 <h2>Odsek za izgubljene prtljage i naknade</h2>
 
-<ol>
+
 <?php
 
-$ovimaPlatitiNadoknadu = [];//ovde cemo staviti osobe sa izgubljenim koferima sa pravom na naknadu
-foreach ($arrival as $person) {
-//ako treba platiti nadoknadu za kofer, onda ga dodaj u array $izgubljeniKoferi
-    if($person->mojKoferJeTu->platitiNadoknaduZaIzgubljenKofer) {
-        $ovimaPlatitiNadoknadu[] = $person;        
-    }
-}    
-//var_dump($ovimaPlatitiNadoknadu); 
+    $ovimaPlatitiNadoknadu = [];//ovde cemo staviti osobe sa izgubljenim koferima sa pravom na naknadu
+    foreach ($arrival as $person) {
+    //ako treba platiti nadoknadu za kofer, onda ga dodaj u array $izgubljeniKoferi
+        if($person->mojKoferJeTu->platitiNadoknaduZaIzgubljenKofer) {
+            $ovimaPlatitiNadoknadu[] = $person;        
+        }
+    }    
+    //var_dump($ovimaPlatitiNadoknadu); 
 
 ?>
 
@@ -131,16 +140,13 @@ Imena putnika čiji predati veliki kofer je izgubljen (kompanija ne odgovara za 
             echo $person;
             echo '</li>';
         }
-
-
     ?>
-
 </ol>
 
 
 
 
-</p>
+
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

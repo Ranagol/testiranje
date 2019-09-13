@@ -20,7 +20,7 @@ class Pilot extends Person {
 
     public function licencaZaRadSetup(){
         $verovatnoca = rand( 0,100);
-        if ($verovatnoca < 5) {
+        if ($verovatnoca < 5) {//bilo na 5%, podignutno na 80% za testiranje NemaLicencu Exceptiona
             $this->imaLicencuZaRad = false;
         } else {
             $this->imaLicencuZaRad = true;
