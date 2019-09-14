@@ -24,6 +24,10 @@ for ($i=0; $i < 2; $i++) {
     $departureWaitingRoom[] = new Pilot;//kreiramo automatski pilote da budu u cekaonici
 }
 
+//KREIRANJE LOGWRITER OBJECTA
+$logCreator = new LogCreator;
+$logCreator->openFile();
+
 //PUTNICI SU STVORENI U CEKAONI
 for ($i=0; $i < 10; $i++) { 
     $departureWaitingRoom[] = new Putnik;//kreiramo automatski putnike da budu u cekaonici
@@ -42,6 +46,8 @@ foreach ($departureWaitingRoom as $putnik) {
             $avionskiLet->spisakPutnika[] = $putnik->pokaziIme();//napravi jos jedan spisak putnika za AvionskiLet
             $avionskiLet->ukupnaTezinaRacunaj($putnik);//racunanje ukupnog opterecenja aviona
             $avionskiLet->povecajBrojPutnikaSaJedan();//za racunanje maksimalno dozvoljenog broja putnika
+            $message = $putnik->pokaziIme();
+            $logCreator->writeLog($message);
         }
     } else {//ako nije putnik, nego se radi o pilotu
         if (!$putnik->getLicencaZaRadStatus()) {
@@ -52,10 +58,13 @@ foreach ($departureWaitingRoom as $putnik) {
             $airplane['kokpit'][] = $putnik;//kopiraj pilota iz cekaonice u avion
             $avionskiLet->ukupnaTezinaRacunaj($putnik);
             $avionskiLet->povecajBrojPutnikaSaJedan();
+            $message = $putnik->pokaziIme();
+            $logCreator->writeLog($message);
             // var_dump($putnik);
         }    
     }                                              
 }
+$logCreator->closeFile();
 //var_dump($avionskiLet->spisakPutnika);//ovo je samo nacin da se proveri da li AvionskiLet ima u sebi spisak putnika. Nema neku bitnu funkciju, ali je trazeno u zadatku.
 
 
