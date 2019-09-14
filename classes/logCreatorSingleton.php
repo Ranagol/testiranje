@@ -1,10 +1,18 @@
 <?php
 
-class LogCreator{
+class LogCreatorSingleton{
 
+    private static $storeMyObject;
     private $file = 'spisakPutnika.txt';
     private $fileHandle;
 
+    public static function getMyObject(){
+        if(self::$storeMyObject == null){
+            self::$storeMyObject = new LogCreatorSingleton;
+        }
+        return self::$storeMyObject;
+    }
+    
     public function openFile(){
         $this->fileHandle = fopen($this->file, 'w');
     }
@@ -19,11 +27,6 @@ class LogCreator{
         fclose($this->fileHandle);
     }
 
-    
-
-   
-
-  
 }
 
 ?>
